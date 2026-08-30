@@ -403,6 +403,13 @@ hl.bind(
     )
 )
 
+hl.bind(
+    mainMod .. " + SHIFT + V",
+    hl.dsp.exec_cmd(
+        "cliphist wipe"
+    )
+)
+
 -- SUPER + E
 hl.bind(
     mainMod .. " + E",
