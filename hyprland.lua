@@ -385,14 +385,21 @@ hl.bind(
     hl.dsp.exit()
 )
 
--- =============================================================================
--- POWER MENU — SUPER + X
--- =============================================================================
+-- SUPER + X
 
 hl.bind(
     mainMod .. " + X",
     hl.dsp.exec_cmd(
         "~/.config/hypr/scripts/power-menu.sh"
+    )
+)
+
+-- SUPER + V
+
+hl.bind(
+    mainMod .. " + V",
+    hl.dsp.exec_cmd(
+        [[bash -c 'cliphist list | wofi --dmenu --prompt "Clipboard" | cliphist decode | wl-copy']]
     )
 )
 
@@ -807,6 +814,12 @@ hl.window_rule({
 -- =============================================================================
 
 hl.on("hyprland.start", function()
+
+   -- ---------------------------------------------------------
+  -- CLIPBOARD HISTORY
+  -- ---------------------------------------------------------
+
+  hl.exec_cmd("wl-paste --type text --watch cliphist store")
 
     -- ---------------------------------------------------------
     -- NUM LOCK
