@@ -1,42 +1,36 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# =============================================================================
-# HYPRLAND POWER MENU
-# =============================================================================
+# ==========================================
+# Hyprland Power Menu
+# Minimal / Dark / Japanese
+# ==========================================
 
-OPTIONS="🔒 Заблокировать
-🌙 Сон
-🚪 Выйти
-🔄 Перезагрузка
-⏻ Выключение"
+entries="\
+󰌾  Заблокировать
+󰤄  Сон
+󰜉  Перезагрузка
+󰐥  Выключение"
 
-CHOICE=$(printf '%s\n' "$OPTIONS" | wofi \
+choice=$(printf '%s\n' "$entries" | wofi \
     --dmenu \
-    --prompt "Питание" \
-    --width 400 \
-    --height 300 \
+    --conf ~/.config/wofi/power-menu.conf \
+    --style ~/.config/wofi/power-menu.css \
     --cache-file /dev/null)
 
-case "$CHOICE" in
-
-    "🔒 Заблокировать")
+case "$choice" in
+    "󰌾  Заблокировать")
         hyprlock
         ;;
 
-    "🌙 Сон")
+    "󰤄  Сон")
         systemctl suspend
         ;;
 
-    "🚪 Выйти")
-        hyprctl dispatch exit
-        ;;
-
-    "🔄 Перезагрузка")
+    "󰜉  Перезагрузка")
         systemctl reboot
         ;;
 
-    "⏻ Выключение")
+    "󰐥  Выключение")
         systemctl poweroff
         ;;
-
 esac
